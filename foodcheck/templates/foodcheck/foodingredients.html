@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FoodIngredients List</title>
+</head>
+
+<h1>FoodIngredients List</h1>
+<body>
+    <P>요리 : {{ food_name }}</P>
+    <ul>
+    {% for foodingredients in foodingredients_list %}
+        <li>{{ foodingredients.ingredients }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

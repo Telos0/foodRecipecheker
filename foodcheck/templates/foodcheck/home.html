@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reg Food List</title>
+</head>
+
+<h1>Reg Food List</h1>
+<body>
+    {% if reg_food_list %}
+    <ul>
+        {% for food in reg_food_list %}
+            <li><a href="/foodcheck/{{ food.food_name }}/">{{ food.food_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <P>No food are available.</P>
+    {% endif %}
+
+
+</body>
+</html>
