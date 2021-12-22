@@ -10,12 +10,17 @@
     {% if reg_food_list %}
     <ul>
         {% for food in reg_food_list %}
-            <li><a href="/foodcheck/{{ food.food_name }}/">{{ food.food_name }}</a></li>
+            <li><a href="/foodcheck/foodingeredientslist/{{ food.food_name }}/">{{ food.food_name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
     <P>No food are available.</P>
     {% endif %}
+
+    <form action="/foodcheck/regfood/" method="post">
+        {% csrf_token %}
+        <button name="regfood">음식등록</button>
+    </form>
 
 
 </body>
