@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regfood</title>
+</head>
+<P>음식등록</P>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<body>
+    <form action="/foodcheck/regfood/get_food/" method="post">
+        {% csrf_token %}
+        <p>Add food</p>
+        <input id="food_name" type="text" name="food_name" value="{{ cur }}">
+        <input type="submit" value="OK">
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>regfoodingredients</title>
+</head>
+<h1>신규 음식 레시피 등록</h1>
+<body>
+<div class="container my-3">
+    <h1>신규음식 : {{ new_food_name }}</h1>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <td><B>재료이름</B></td>
+            <td><B>필요수량</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for foodingredients in foodingredients_list %}
+        <tr>
+            <td> {{ foodingredients.ingredients }}</td>
+            <td> {{ foodingredients.quantity }} </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <form action="/foodcheck/regfood/get_foodingredients/{{ new_food_name }}/" method="post">
+        {% csrf_token %}
+        <p>Add ingredients</p>
+        <input id="ingredients_name" type="text" name="ingredients_name" value="{{ cur }}">
+        <input type="submit" value="OK">
+    </form>
+
+
+    <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
+</body>
+</html>
