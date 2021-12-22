@@ -22,6 +22,11 @@
         <button name="regfood">음식등록</button>
     </form>
 
+    <form action="/foodcheck/compare/" method="post">
+        {% csrf_token %}
+        <button name="compare">재료리스트로 검색</button>
+    </form>
+
 
 </body>
 </html>

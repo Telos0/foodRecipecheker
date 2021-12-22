@@ -27,6 +27,9 @@ def foodingredients(request, food_name):
 def regfood(request):
     return render(request, 'foodcheck/regfood.html')
 
+def compare(request):
+    return render(request, 'foodcheck/compare.html')
+
 def get_food(request):
     if request.method == 'POST':
         form = FoodForm(request.POST)
