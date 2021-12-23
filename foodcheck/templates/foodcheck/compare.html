@@ -7,10 +7,31 @@
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'foodcheck/bootstrap.min.css' %}">
+
+    <script>
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
+            newP.innerHTML = "<input type='text' name='ingredients_name[]'> <input type='button' value='삭제' onclick='remove(this)'>";
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+    </script>
+
     <title>compare</title>
 </head>
 <body>
 <P>비교</P>
+
+    <form action="/foodcheck/compare/compare_foodingredients/" method="post">
+        {% csrf_token %}
+        <div id="box">
+            <input type="text" name="ingredients_name[]"> <input type="button" value="추가" onclick="add_textbox()">
+        </div>
+        <input type="submit" value="OK">
+    </form>
 
 <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
 </body>

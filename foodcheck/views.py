@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django import forms
 from django.utils import timezone
+from django.db.models import Sum, Count, Max, Min, Avg
 
 #form class 선언
 class FoodForm(forms.Form):
@@ -156,3 +157,22 @@ def add_foodingredients(request, food_name):
     foodingredients_list = FoodIngredients.objects.filter(food=food_name)
     context = {'foodingredients_list': foodingredients_list, 'food_name': food_name}
     return render(request, 'foodcheck/foodingredients.html', context)
+
+
+def compare_foodingredients(request):
+    print("POST data : ", request.POST.getlist("ingredients_name[]"))
+    postdata_list = request.POST.getlist("ingredients_name[]")
+
+
+    postdata_list_objects = []
+    for x in postdata_list:
+        postdata_list_objects.append(Ingredients.objects.get(ingredients_name=x))
+
+
+    queryset = FoodIngredients.objects.filter(ingredients__in = postdata_list_objects).values("food").annotate(
+        ingre_count = Count("ingredients")
+    ).values('food', 'ingre_count')
+    for data in queryset:
+        print("data : ", data.get("food"), " count: ", data.get("ingre_count"))
+
+    return render(request, 'foodcheck/compare.html')
