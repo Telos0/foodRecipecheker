@@ -79,6 +79,9 @@ def get_foodingredients(request, new_food_name):
             new_Foodingredients = FoodIngredients(food = new_food_object, ingredients = new_ingredients_object, insdttm = new_insdttm)
             new_Foodingredients.save()
 
+            new_food_object.ingredients_count += 1
+            new_food_object.save()
+
             foodingredients_list = FoodIngredients.objects.filter(food = new_food_name)
             #redirect
             return render(request, 'foodcheck/regfoodingredients.html', {'new_food_name': new_food_name, 'foodingredients_list': foodingredients_list})
@@ -92,7 +95,6 @@ def get_foodingredients(request, new_food_name):
 #음식레시피 수정화면에서 호출하여 레시피를 삭제
 def del_foodingeredients(request, food_name):
     if request.method == 'POST':
-        print(request.POST)
         form = FoodIngredientsForm(request.POST)
         if form.is_valid():
             ingredients_name = form.cleaned_data['ingredients_name']
@@ -102,7 +104,8 @@ def del_foodingeredients(request, food_name):
 
 
             FoodIngredients.objects.filter(food = food_object, ingredients = ingredients_object).delete()
-
+            food_object.ingredients_count -= 1
+            food_object.save()
             #redirect
             foodingredients_list = FoodIngredients.objects.filter(food=food_name)
             context = {'foodingredients_list': foodingredients_list, 'food_name': food_name}
@@ -141,6 +144,9 @@ def add_foodingredients(request, food_name):
             new_Foodingredients = FoodIngredients(food = food_object, ingredients = ingredients_object, insdttm = insdttm)
             new_Foodingredients.save()
 
+            food_object.ingredients_count += 1
+            food_object.save()
+
             #redirect
             foodingredients_list = FoodIngredients.objects.filter(food=food_name)
             context = {'foodingredients_list': foodingredients_list, 'food_name': food_name}
@@ -173,6 +179,7 @@ def compare_foodingredients(request):
         ingre_count = Count("ingredients")
     ).values('food', 'ingre_count')
     for data in queryset:
-        print("data : ", data.get("food"), " count: ", data.get("ingre_count"))
+
+        print("data : ", data.get("food"), " count: ", data.get("ingre_count"), "food_count : ", Food.objects.get(food_name = data.get("food")).ingredients_count)
 
     return render(request, 'foodcheck/compare.html')

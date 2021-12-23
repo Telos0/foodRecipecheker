@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Food(models.Model):
     food_name = models.CharField(max_length=200, primary_key=True)
+    ingredients_count = models.IntegerField(default=0)
     insdttm = models.DateTimeField('date insterted')
 
     def __str__(self):
