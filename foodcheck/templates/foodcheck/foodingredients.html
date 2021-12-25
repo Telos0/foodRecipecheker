@@ -14,7 +14,7 @@
     <title>FoodIngredients List</title>
 </head>
 
-<h1>FoodIngredients List</h1>
+<h1>레시피 리스트</h1>
 <body>
 <div class="container my-3">
     <h1>요리 : {{ food_name }}</h1>
@@ -47,7 +47,7 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <form action="/foodcheck/regfood/add_foodingredients/{{ food_name }}/" method="post">
         {% csrf_token %}
-        <p>Add ingredients</p>
+        <p>재료 추가</p>
         <input id="add_foodingredients" type="text" name="ingredients_name" value="{{ cur }}">
         <input type="submit" value="OK">
     </form>

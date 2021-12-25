@@ -35,7 +35,7 @@
     </table>
     <form action="/foodcheck/regfood/get_foodingredients/{{ new_food_name }}/" method="post">
         {% csrf_token %}
-        <p>Add ingredients</p>
+        <p>재료 추가</p>
         <input id="ingredients_name" type="text" name="ingredients_name" value="{{ cur }}">
         <input type="submit" value="OK">
     </form>

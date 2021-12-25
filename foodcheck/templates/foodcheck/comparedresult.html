@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'foodcheck/bootstrap.min.css' %}">
+
+    <title>comparedresult</title>
+</head>
+<body>
+<P>가능한 요리 리스트</P>
+    {% if comparedresult_list %}
+    <ul>
+        {% for food_name in comparedresult_list %}
+            <li><a href="/foodcheck/foodingeredientslist/{{ food_name }}/">{{ food_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <P>No food are available.</P>
+    {% endif %}
+
+    <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
+</body>
+</html>

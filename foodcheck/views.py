@@ -178,8 +178,18 @@ def compare_foodingredients(request):
     queryset = FoodIngredients.objects.filter(ingredients__in = postdata_list_objects).values("food").annotate(
         ingre_count = Count("ingredients")
     ).values('food', 'ingre_count')
+
+    comparedresult_list = []
     for data in queryset:
 
         print("data : ", data.get("food"), " count: ", data.get("ingre_count"), "food_count : ", Food.objects.get(food_name = data.get("food")).ingredients_count)
+        food_name = data.get("food")
+        having_ingre_count = data.get("ingre_count")
+        need_ingre_count = Food.objects.get(food_name = data.get("food")).ingredients_count
+        if having_ingre_count == need_ingre_count:
+            comparedresult_list.append(food_name)
 
-    return render(request, 'foodcheck/compare.html')
+    context = {"comparedresult_list" : comparedresult_list}
+
+
+    return render(request, 'foodcheck/comparedresult.html', context)

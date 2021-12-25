@@ -12,7 +12,7 @@
         const add_textbox = () => {
             const box = document.getElementById("box");
             const newP = document.createElement('p');
-            newP.innerHTML = "<input type='text' name='ingredients_name[]'> <input type='button' value='삭제' onclick='remove(this)'>";
+            newP.innerHTML = "<B>재료 : </B> <input type='text' name='ingredients_name[]'> <input type='button' value='삭제' onclick='remove(this)'>";
             box.appendChild(newP);
         }
         const remove = (obj) => {
@@ -28,7 +28,7 @@
     <form action="/foodcheck/compare/compare_foodingredients/" method="post">
         {% csrf_token %}
         <div id="box">
-            <input type="text" name="ingredients_name[]"> <input type="button" value="추가" onclick="add_textbox()">
+            <P><B>재료 : </B> <input type="text" name="ingredients_name[]"> <input type="button" value="추가" onclick="add_textbox()" style="background-color:red; border-color:blue; color:white"></P>
         </div>
         <input type="submit" value="OK">
     </form>

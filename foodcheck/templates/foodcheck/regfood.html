@@ -9,9 +9,11 @@
 <body>
     <form action="/foodcheck/regfood/get_food/" method="post">
         {% csrf_token %}
-        <p>Add food</p>
+        <p>음식 추가</p>
         <input id="food_name" type="text" name="food_name" value="{{ cur }}">
         <input type="submit" value="OK">
     </form>
+
+    <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
 </body>
 </html>
