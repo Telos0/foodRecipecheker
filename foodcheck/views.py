@@ -182,7 +182,7 @@ def compare_foodingredients(request):
     comparedresult_list = []
     for data in queryset:
 
-        print("data : ", data.get("food"), " count: ", data.get("ingre_count"), "food_count : ", Food.objects.get(food_name = data.get("food")).ingredients_count)
+        #print("data : ", data.get("food"), " count: ", data.get("ingre_count"), "food_count : ", Food.objects.get(food_name = data.get("food")).ingredients_count)
         food_name = data.get("food")
         having_ingre_count = data.get("ingre_count")
         need_ingre_count = Food.objects.get(food_name = data.get("food")).ingredients_count
