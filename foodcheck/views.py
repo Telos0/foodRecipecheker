@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from foodcheck.models import Food, FoodIngredients, Ingredients
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.urls import reverse
 from django import forms
 from django.utils import timezone
 from django.db.models import Sum, Count, Max, Min, Avg
+
 
 #form class 선언
 class FoodForm(forms.Form):
@@ -68,8 +70,10 @@ def get_foodingredients(request, new_food_name):
             new_insdttm = timezone.now()
 
             new_food_object = Food.objects.get(food_name = new_food_name)
-            new_ingredients_object = Ingredients.objects.get(ingredients_name = new_ingredients_name)
-
+            try:
+                new_ingredients_object = Ingredients.objects.get(ingredients_name = new_ingredients_name)
+            except Ingredients.DoesNotExist:
+                return HttpResponse("없는 재료입니다. 추가를 원하시면 관리자에게 문의하세요")
 
             old_ingredients = FoodIngredients.objects.filter(food = new_food_object, ingredients = new_ingredients_object)
             for ingrediendts in old_ingredients:
@@ -131,8 +135,10 @@ def add_foodingredients(request, food_name):
             insdttm = timezone.now()
 
             food_object = Food.objects.get(food_name = food_name)
-            ingredients_object = Ingredients.objects.get(ingredients_name = ingredients_name)
-
+            try:
+                ingredients_object = Ingredients.objects.get(ingredients_name = ingredients_name)
+            except Ingredients.DoesNotExist:
+                return HttpResponse("없는 재료입니다. 추가를 원하시면 관리자에게 문의하세요")
 
             old_ingredients = FoodIngredients.objects.filter(food = food_object, ingredients = ingredients_object)
             for ingrediendts in old_ingredients:
