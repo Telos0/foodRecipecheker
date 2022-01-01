@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
+{% extends "base.html" %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'foodcheck/bootstrap.min.css' %}">
-    <title>Reg Food List</title>
-</head>
-
+{% block content %}
 <h1>등록된 레시피 리스트</h1>
-<body>
+
     {% if reg_food_list %}
     <ul>
         {% for food in reg_food_list %}
@@ -32,6 +23,4 @@
         <button name="compare">재료리스트로 검색</button>
     </form>
 
-
-</body>
-</html>
+{% endblock content %}
