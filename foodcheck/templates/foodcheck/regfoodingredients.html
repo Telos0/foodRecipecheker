@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
-
-    <link rel="stylesheet" type="text/css" href="{% static 'foodcheck/bootstrap.min.css' %}">
-    <title>regfoodingredients</title>
-</head>
+{% block content %}
 <h1>신규 음식 레시피 등록</h1>
-<body>
+
 <div class="container my-3">
     <h1>신규음식 : {{ new_food_name }}</h1>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -43,5 +34,4 @@
 
     <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
 </div>
-</body>
-</html>
+{% endblock content %}

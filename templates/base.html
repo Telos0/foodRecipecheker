@@ -7,7 +7,20 @@
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <title>{% block title %}base test {% endblock %}</title>
+
+    <script>
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
+            newP.innerHTML = "<B>재료 : </B> <input type='text' name='ingredients_name[]'> <input type='button' value='삭제' onclick='remove(this)'>";
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+    </script>
+
+    <title>{% block title %}foodrecipe check Site{% endblock %}</title>
 </head>
 <body>
 

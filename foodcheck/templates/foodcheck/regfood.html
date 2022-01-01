@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
+{% extends "base.html" %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'foodcheck/bootstrap.min.css' %}">
-    <title>regfood</title>
-</head>
+
+{% block content %}
 <P>음식등록</P>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <body>
@@ -20,5 +13,4 @@
     </form>
 
     <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
-</body>
-</html>
+{% endblock content %}
