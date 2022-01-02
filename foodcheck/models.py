@@ -11,6 +11,7 @@ class Food(models.Model):
 
 class Ingredients(models.Model):
     ingredients_name = models.CharField(max_length=200, primary_key=True)
+    # unit = models.ForeignKey(UnitMaster, on_delete=models.CASCADE)
     insdttm = models.DateTimeField('date insterted')
 
     def __str__(self):
@@ -21,3 +22,10 @@ class FoodIngredients(models.Model):
     ingredients = models.ForeignKey(Ingredients, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
     insdttm = models.DateTimeField('date insterted')
+
+# class UnitMaster(models.Model):
+#     unit = models.CharField(max_length=20, primary_key=True)
+#     insdttm = models.DateTimeField('date insterted')
+#
+#     def __str__(self):
+#         return self.unit

@@ -13,12 +13,11 @@
     <P>No food are available.</P>
     {% endif %}
 
-    <form action="/foodcheck/regfood/" method="post">
+    <form action="/foodcheck/regfood/" method="post" style="float:left;margin:0;">
         {% csrf_token %}
         <button name="regfood">음식등록</button>
     </form>
-
-    <form action="/foodcheck/compare/" method="post">
+    <form action="/foodcheck/compare/" method="post" style="float:left;margin:0;">
         {% csrf_token %}
         <button name="compare">재료리스트로 검색</button>
     </form>
