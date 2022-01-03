@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>등록된 레시피 리스트</h1>
+<h2>등록된 레시피 리스트</h2>
 
     {% if reg_food_list %}
     <ul>
@@ -13,11 +13,11 @@
     <P>No food are available.</P>
     {% endif %}
 
-    <form action="/foodcheck/regfood/" method="post" style="float:left;margin:0;">
+    <form action="/foodcheck/regfood/" method="post">
         {% csrf_token %}
         <button name="regfood">음식등록</button>
     </form>
-    <form action="/foodcheck/compare/" method="post" style="float:left;margin:0;">
+    <form action="/foodcheck/compare/" method="post">
         {% csrf_token %}
         <button name="compare">재료리스트로 검색</button>
     </form>

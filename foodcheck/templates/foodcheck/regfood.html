@@ -2,15 +2,14 @@
 
 
 {% block content %}
-<P>음식등록</P>
+<h2>음식등록</h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<body>
     <form action="/foodcheck/regfood/get_food/" method="post">
         {% csrf_token %}
-        <p>음식 추가</p>
+        <h3>음식 추가</h3>
         <input id="food_name" type="text" name="food_name" value="{{ cur }}">
         <input type="submit" value="OK">
     </form>
-
+    <br/>
     <a href="{% url 'foodcheck:home' %}">home으로 돌아가기</a>
 {% endblock content %}
