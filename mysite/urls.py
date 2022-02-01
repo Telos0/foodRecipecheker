@@ -20,4 +20,6 @@ from foodcheck import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('foodcheck/', include('foodcheck.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('', include('foodcheck.urls')),
 ]

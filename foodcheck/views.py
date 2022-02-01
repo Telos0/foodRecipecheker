@@ -199,3 +199,9 @@ def compare_foodingredients(request):
 
 
     return render(request, 'foodcheck/comparedresult.html', context)
+
+
+def test(request):
+    ingredientsList = Ingredients.objects.all()
+    context = {'ingredientsList' : ingredientsList}
+    return render(request, 'foodcheck/test_ingreList.html', context)
